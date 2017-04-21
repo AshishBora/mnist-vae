@@ -1,3 +1,4 @@
+# This file based on : https://jmetzen.github.io/notebooks/vae.ipynb
 # pylint: disable = C0103, C0111, C0301, R0913, R0903, R0914, R0902
 
 import os
