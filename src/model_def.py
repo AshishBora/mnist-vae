@@ -15,14 +15,6 @@ class Hparams(object):
         self.n_input = 784           # MNIST data input (img shape: 28*28)
         self.n_z = 20                # dimensionality of latent space
         self.transfer_fct = tf.nn.softplus
-        self.learning_rate = 0.001
-        self.batch_size = 100
-        self.training_epochs = 100
-        self.summary_epoch = 1
-        self.ckpt_epoch = 5
-        self.num_samples = 60000
-        self.ckpt_dir = './models/mnist-vae/'
-        self.sample_dir = './samples/mnist-vae/'
 
 
 def encoder(hparams, x_ph, scope_name, reuse):
