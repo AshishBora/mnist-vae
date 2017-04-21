@@ -5,12 +5,12 @@ import os
 import numpy as np
 import tensorflow as tf
 import utils
-import vae_def
+import model_def
 import data_input
 
 
 def main():
-    hparams = vae_def.Hparams()
+    hparams = model_def.Hparams()
 
     # Set up some stuff according to hparams
     utils.set_up_dir(hparams.ckpt_dir)
@@ -19,7 +19,7 @@ def main():
 
     # encode
     x_ph = tf.placeholder(tf.float32, [None, hparams.n_input], name='x_ph')
-    z_mean, z_log_sigma_sq = vae_def.encoder(hparams, x_ph, 'enc', reuse=False)
+    z_mean, z_log_sigma_sq = model_def.encoder(hparams, x_ph, 'enc', reuse=False)
 
     # sample
     eps = tf.random_normal((hparams.batch_size, hparams.n_z), 0, 1, dtype=tf.float32)
@@ -27,14 +27,14 @@ def main():
     z = z_mean + z_sigma * eps
 
     # reconstruct
-    logits, x_reconstr_mean = vae_def.generator(hparams, z, 'gen', reuse=False)
+    logits, x_reconstr_mean = model_def.generator(hparams, z, 'gen', reuse=False)
 
     # generator sampler
     z_ph = tf.placeholder(tf.float32, [None, hparams.n_z], name='x_ph')
-    _, x_sample = vae_def.generator(hparams, z_ph, 'gen', reuse=True)
+    _, x_sample = model_def.generator(hparams, z_ph, 'gen', reuse=True)
 
     # define loss and update op
-    total_loss = vae_def.get_loss(x_ph, logits, z_mean, z_log_sigma_sq)
+    total_loss = model_def.get_loss(x_ph, logits, z_mean, z_log_sigma_sq)
     opt = tf.train.AdamOptimizer(learning_rate=hparams.learning_rate)
     update_op = opt.minimize(total_loss)
 
