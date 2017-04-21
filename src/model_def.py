@@ -49,7 +49,6 @@ def encoder(hparams, x_ph, scope_name, reuse):
     return z_mean, z_log_sigma_sq
 
 
-
 def generator(hparams, z, scope_name, reuse):
 
     with tf.variable_scope(scope_name) as scope:
@@ -77,3 +76,18 @@ def get_loss(x, logits, z_mean, z_log_sigma_sq):
     latent_losses = -0.5 * tf.reduce_sum(1 + z_log_sigma_sq - tf.square(z_mean) - tf.exp(z_log_sigma_sq), 1)
     total_loss = tf.reduce_mean(reconstr_losses + latent_losses, name='total_loss')
     return total_loss
+
+
+def get_z_var(hparams, batch_size):
+    z = tf.Variable(tf.random_normal((batch_size, hparams.n_z)), name='z')
+    return z
+
+
+def gen_restore_vars():
+    restore_vars = ['gen/w1',
+                    'gen/b1',
+                    'gen/w2',
+                    'gen/b2',
+                    'gen/w3',
+                    'gen/b3']
+    return restore_vars
