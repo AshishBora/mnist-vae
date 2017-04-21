@@ -97,7 +97,7 @@ class Hparams(object):
         self.transfer_fct = tf.nn.softplus
         self.learning_rate = 0.001
         self.batch_size = 100
-        self.training_epochs = 75
+        self.training_epochs = 100
         self.summary_epoch = 1
         self.ckpt_epoch = 5
         self.num_samples = 60000
