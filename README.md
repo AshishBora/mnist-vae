@@ -1,7 +1,5 @@
 # mnist-vae
 
-VAE on MNIST
-
 To train:
 ```shell
 $ python ./src/main.py
