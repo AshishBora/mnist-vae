@@ -1,0 +1,8 @@
+*.DS_Store
+data/
+models/
+samples/
+
+mnist_vae_train.py
+vae.ipynb
+*.pyc
