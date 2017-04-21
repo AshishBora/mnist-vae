@@ -1,4 +1,4 @@
-# mnist-vae
+# mnist_vae
 
 To train:
 ```shell
