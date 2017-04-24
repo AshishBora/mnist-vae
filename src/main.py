@@ -9,9 +9,7 @@ import model_def
 import data_input
 
 
-def main():
-    hparams = model_def.Hparams()
-
+def main(hparams):
     # Set up some stuff according to hparams
     utils.set_up_dir(hparams.ckpt_dir)
     utils.set_up_dir(hparams.sample_dir)
@@ -98,4 +96,17 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+
+    HPARAMS = model_def.Hparams()
+
+    HPARAMS.num_samples = 60000
+    HPARAMS.learning_rate = 0.001
+    HPARAMS.batch_size = 100
+    HPARAMS.training_epochs = 100
+    HPARAMS.summary_epoch = 1
+    HPARAMS.ckpt_epoch = 5
+
+    HPARAMS.ckpt_dir = './models/mnist-vae/'
+    HPARAMS.sample_dir = './samples/mnist-vae/'
+
+    main(HPARAMS)
