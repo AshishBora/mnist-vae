@@ -1,10 +1,8 @@
 *.DS_Store
+*.pyc
+
 data/
 models/
 samples/
-
-mnist_vae_train.py
-vae.ipynb
-*.pyc
 
 transport.sh
